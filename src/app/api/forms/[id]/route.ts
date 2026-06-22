@@ -2,26 +2,24 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
+  request: Request,
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
-    // delete responses first
+    const { id } = await context.params;
+
     await prisma.response.deleteMany({
       where: {
         formId: id,
       },
     });
 
-    // delete fields
     await prisma.formField.deleteMany({
       where: {
         formId: id,
       },
     });
 
-    // delete form
     await prisma.form.delete({
       where: {
         id,
@@ -35,12 +33,8 @@ export async function DELETE(
     console.error(error);
 
     return NextResponse.json(
-      {
-        error: "Failed to delete form",
-      },
-      {
-        status: 500,
-      }
+      { error: "Failed to delete form" },
+      { status: 500 }
     );
   }
 }

@@ -3,15 +3,12 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await context.params;
 
     const data = await req.json();
-
-    console.log("FORM ID:", id);
-    console.log("DATA:", data);
 
     const response = await prisma.response.create({
       data: {
@@ -20,10 +17,7 @@ export async function POST(
       },
     });
 
-    return NextResponse.json({
-      success: true,
-      response,
-    });
+    return NextResponse.json(response);
   } catch (error) {
     console.error(error);
 
