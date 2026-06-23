@@ -45,16 +45,19 @@ https://dynamic-form-builder-ruby.vercel.app
 ## 📸 Screenshots
 
 ### Landing Page
-(Add screenshot here)
+![landing page](public/screenshots/landing-page.png)
 
 ### Login Page
-(Add screenshot here)
+![Login Page](public/screenshots/login-page.png)
 
 ### Dashboard
-(Add screenshot here)
+![Dashboard](public/screenshots/dashboard-page.png)
 
 ### Form Builder
-(Add screenshot here)
+![Form Builder](public/screenshots/manage-forms-page.png)
+
+### Analytics Dashboard
+![Analytics Dashboard](public/screenshots/analytics-dashboard.png)
 
 ---
 
